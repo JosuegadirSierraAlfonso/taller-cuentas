@@ -1,30 +1,28 @@
 export default{
     dataMyBudget(){
         localStorage.setItem("myBudget", JSON.stringify({
-            article:{
+            article:{     
                 value: "",
-
-                income:{
-                    value:"",
+                income: {                 
+                    value: 
+                    "",
                     datos: [
-        
                     ]
                 },
-                expense:{
-                    value:"",
-                    porcentaje: "",
-                    datos1:[],
-                    porcentajes: [
-
-                    ],
-                    datos: [
-                        
-                        
-        
+                expenses: {
+                    value: "",
+                    porcent: "",
+                    info:[{
+                        datos:[
+                        ],
+                        porcents: [
+                        ]
+                    }
+                    ],  
+                    datos: [       
                     ]
                 }
-
-            }
+            },
         }))
-    },
+    }
 }
