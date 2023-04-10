@@ -73,6 +73,7 @@ export default{
             document.querySelector(id[count]).innerHTML = e.data;
             (id.length-1==count) ? ws.terminate() : count++;
         })
+        localStorage.setItem("myBudget", JSON.stringify(this));
         }) 
     },   
 }

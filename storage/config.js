@@ -1,6 +1,6 @@
 export default{
     dataMyBudget(){
-        localStorage.setItem("myBudget", JSON.stringify({
+        const data = {
             article:{     
                 value: "",
                 income: {                 
@@ -23,6 +23,8 @@ export default{
                     ]
                 }
             },
-        }))
+        }
+        const value = localStorage.getItem("myBudget");
+        if (!value) localStorage.setItem("myBudget", JSON.stringify(data));
     }
 }
