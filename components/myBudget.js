@@ -35,6 +35,19 @@ export default{
        
         if(data.symbol == "+"){
             counterIncome = counterIncome + parseInt(data.worth);
+
+            let calculoPorcents = "";
+            this.article.income.info.map((val,id)=>{
+                val.porcents = [];
+                val.datos.unshift(data.worth)
+                val.names.unshift(data.texto);
+                val.datos.map((val2,id)=>{
+                    calculoPorcents = parseInt(+(parseInt(val2)*100)/counterIncome);
+                    val.porcents.push(calculoPorcents)
+                })
+            })
+
+
             this.article.income.datos.unshift(data);
             this.article.income.value = counterIncome;
              
@@ -44,6 +57,7 @@ export default{
             this.article.expenses.info.map((val,id)=>{
                 val.porcents = [];
                 val.datos.unshift(data.worth)
+                val.names.unshift(data.texto);
                 val.datos.map((val2,id)=>{
                     calculoPorcents = parseInt(-(parseInt(val2)*100)/counterExpenses);
                     val.porcents.push(calculoPorcents)
@@ -72,7 +86,79 @@ export default{
             
             document.querySelector(id[count]).innerHTML = e.data;
             (id.length-1==count) ? ws.terminate() : count++;
-        })
+        });
+
+
+
+
+        const getOptionChart1 = () => {
+            return {
+                title: {
+                    text: "Income graph",
+                  },
+                xAxis: {
+                  type: "category",
+                  data: this.article.income.info[0].names,
+                },
+                yAxis: {
+                  type: "value"
+                },
+                series: [
+                  {
+                    data: this.article.income.info[0].porcents,
+                    type: "bar",
+                    showBackground: true,
+                    backgroundStyle: {
+                      color: "rgba(180, 180, 180, 0.2)",
+                    },
+                  }
+                ]
+              };
+        };
+        const initCharts1 = () => {
+            const chart = echarts.init(document.querySelector("#chart1"));
+            
+            chart.setOption(getOptionChart1());
+
+        };
+
+
+
+
+
+        const getOptionChart = () => {
+            return {
+                title: {
+                    text: "expense graph",
+                  },
+                xAxis: {
+                  type: "category",
+                  data: this.article.expenses.info[0].names,
+                },
+                yAxis: {
+                  type: "value"
+                },
+                series: [
+                  {
+                    data: this.article.expenses.info[0].porcents,
+                    type: "bar",
+                    showBackground: true,
+                    backgroundStyle: {
+                      color: "rgba(180, 180, 180, 0.2)",
+                    },
+                  }
+                ]
+              };
+        };
+        const initCharts = () => {
+            const chart1 = echarts.init(document.querySelector("#chart2"));
+            
+            chart1.setOption(getOptionChart());
+
+        };
+        initCharts();
+        initCharts1();
+
         localStorage.setItem("myBudget", JSON.stringify(this));
         }) 
     },   

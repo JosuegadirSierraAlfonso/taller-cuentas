@@ -17,8 +17,8 @@ let wsMyBudget = {
     },
     ShowFormBudget(p1) {
         return `
-        <div class="col-2 ">
-            <select name="symbol" id="">
+        <div class="px-3">
+            <select name="symbol" id="" class="btn btn-light">
                 <option name="positivo" alue="positivo">+</option>
                 <option name="negativo" value="negativo">-</option>
             </select>
@@ -42,7 +42,7 @@ let wsMyBudget = {
                         <th>INCOME</th>
                     </thead>
                     <tbody>
-                        ${p1.income.datos.map((val, id)=> {return `<tr><td>${val.texto} </td><td class="col-2">+$${val.worth}</td></tr>`}).join("")}
+                        ${p1.income.datos.map((val, id)=> {return `<tr><td>${val.texto} </td><td class="col-2">+$${val.worth}</td>${p1.income.info.map((val,id1)=>{return `<td>${val.porcents[id]}%</td>`})}</tr>`}).join("")}
                     </tbody>
                 </table>
             </div>

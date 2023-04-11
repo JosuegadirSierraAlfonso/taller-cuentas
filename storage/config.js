@@ -4,8 +4,16 @@ export default{
             article:{     
                 value: "",
                 income: {                 
-                    value: 
-                    "",
+                    value:"",
+                    info:[{
+                        datos:[
+                        ],
+                        porcents: [
+                        ],
+                        names: [
+                        ]
+                    }
+                    ],
                     datos: [
                     ]
                 },
@@ -16,6 +24,8 @@ export default{
                         datos:[
                         ],
                         porcents: [
+                        ],
+                        names: [
                         ]
                     }
                     ],  
